@@ -1,7 +1,101 @@
-<form>
+<form class="form-horizontal">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Create User</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contactPreference" class="col-md-2 control-label">Contact Preference</label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio" id="preference" value="Email">Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" id="preference" value="Phone">Phone
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmEmail" class="col-sm-2 control-label">Confirm Email</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="well">
+
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-4">
+            <button class="btn btn-primary">Add Skill</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="skillName" class="col-sm-2 control-label">Skill</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="C#, Python, Angular, etc...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="experienceInYears" class="col-sm-2 control-label">Experience</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="proficiency" class="col-md-2 control-label">Proficiency</label>
+          <div class="col-md-8">
+            <label class="radio-inline">
+              <input type="radio" id="proficiency" value="beginner">Beginner
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="proficiency" value="intermediate">Intermediate
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id="proficiency" value="expert">Expert
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="btn btn-toolbar">
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary">Load</button>
+      </div>
     </div>
   </div>
 </form>
