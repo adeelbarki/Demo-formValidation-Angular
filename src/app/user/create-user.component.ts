@@ -20,6 +20,9 @@ export class CreateUserComponent implements OnInit {
       minlength: 'Must be 2 characters',
       maxlength: 'Must be less than 10 characters'
     },
+    phone: {
+      required: 'Phone number is required'
+    },
     email: {
       required: 'Email is required',
     },
@@ -40,6 +43,7 @@ export class CreateUserComponent implements OnInit {
   formErrors = {
     firstName: '',
     lastName: '',
+    phone: '',
     email: '',
     confirmEmail: '',
     skillName: '',
@@ -53,6 +57,8 @@ export class CreateUserComponent implements OnInit {
     this.userForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      contactPreference: ['email', Validators.required],
+      phone: ['', Validators.required],
       email: ['', Validators.required],
       confirmEmail: ['', Validators.required],
       skills: this.fb.group({
@@ -61,9 +67,24 @@ export class CreateUserComponent implements OnInit {
         proficiency: ['', Validators.required]
       })
     });
+
+    this.userForm.get('contactPreference').valueChanges.subscribe((data: string) => {
+      this.onContactPreferenceChange(data);
+    });
+
     this.userForm.valueChanges.subscribe(data => {
       this.logValidationErrors(this.userForm);
     });
+  }
+
+  onContactPreferenceChange(selectedValue: string) {
+    const phoneControl = this.userForm.get('phone');
+    if (selectedValue === 'phone') {
+      phoneControl.setValidators(Validators.required);
+    } else {
+      phoneControl.clearValidators();
+    }
+    phoneControl.updateValueAndValidity();
   }
 
   logValidationErrors(group: FormGroup = this.userForm): void {
