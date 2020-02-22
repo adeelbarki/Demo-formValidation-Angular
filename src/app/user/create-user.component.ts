@@ -69,6 +69,10 @@ export class CreateUserComponent implements OnInit {
     (<FormArray>this.userForm.get('skills')).push(this.addSkillFormGroup());
   }
 
+  removeSkillFormClick(skillIndex: number): void {
+    (<FormArray>this.userForm.get('skills')).removeAt(skillIndex);
+  }
+
   addSkillFormGroup(): FormGroup {
     return this.fb.group({
       skillName: ['', Validators.required],
