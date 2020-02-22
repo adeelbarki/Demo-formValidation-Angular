@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { CustomValidators } from '../shared/custom.validators';
 
 @Component({
@@ -34,27 +34,9 @@ export class CreateUserComponent implements OnInit {
     emailGroup: {
       emailMismatch: 'Email and confirm email do not match'
     },
-    skillName: {
-      required: 'Skill name is required',
-    },
-    experienceInYears: {
-      required: 'Experience is required'
-    },
-    proficiency: {
-      required: 'Proficiency is required'
-    }
   };
 
   formErrors = {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    confirmEmail: '',
-    emailGroup: '',
-    skillName: '',
-    experienceInYears: '',
-    proficiency: '',
   };
 
   constructor(private fb: FormBuilder) { }
@@ -69,11 +51,9 @@ export class CreateUserComponent implements OnInit {
         email: ['', [Validators.required, CustomValidators.emailDomain('gmail.com')]],
         confirmEmail: ['', Validators.required],
       }, {validator: matchEmail}),
-      skills: this.fb.group({
-        skillName: ['', Validators.required],
-        experienceInYears: ['', Validators.required],
-        proficiency: ['', Validators.required]
-      })
+      skills: this.fb.array([
+        this.addSkillFormGroup()
+      ])
     });
 
     this.userForm.get('contactPreference').valueChanges.subscribe((data: string) => {
@@ -82,6 +62,18 @@ export class CreateUserComponent implements OnInit {
 
     this.userForm.valueChanges.subscribe(data => {
       this.logValidationErrors(this.userForm);
+    });
+  }
+
+  AddSkillButtonClick(): void {
+    (<FormArray>this.userForm.get('skills')).push(this.addSkillFormGroup());
+  }
+
+  addSkillFormGroup(): FormGroup {
+    return this.fb.group({
+      skillName: ['', Validators.required],
+      experienceInYears: ['', Validators.required],
+      proficiency: ['', Validators.required]
     });
   }
 
