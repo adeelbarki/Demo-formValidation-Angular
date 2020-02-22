@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { CustomValidators } from '../shared/custom.validators';
 
 @Component({
   selector: 'app-create-employee',
@@ -25,9 +26,13 @@ export class CreateUserComponent implements OnInit {
     },
     email: {
       required: 'Email is required',
+      emailDomain: 'Email domain must be gmail.com'
     },
     confirmEmail: {
       required: 'Confirm Email is required',
+    },
+    emailGroup: {
+      emailMismatch: 'Email and confirm email do not match'
     },
     skillName: {
       required: 'Skill name is required',
@@ -46,6 +51,7 @@ export class CreateUserComponent implements OnInit {
     phone: '',
     email: '',
     confirmEmail: '',
+    emailGroup: '',
     skillName: '',
     experienceInYears: '',
     proficiency: '',
@@ -59,8 +65,10 @@ export class CreateUserComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       contactPreference: ['email', Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.required],
-      confirmEmail: ['', Validators.required],
+      emailGroup: this.fb.group({
+        email: ['', [Validators.required, CustomValidators.emailDomain('gmail.com')]],
+        confirmEmail: ['', Validators.required],
+      }, {validator: matchEmail}),
       skills: this.fb.group({
         skillName: ['', Validators.required],
         experienceInYears: ['', Validators.required],
@@ -89,20 +97,21 @@ export class CreateUserComponent implements OnInit {
 
   logValidationErrors(group: FormGroup = this.userForm): void {
     Object.keys(group.controls).forEach((key: string) => {
-      const abstractControl = group.get(key)
-      if (abstractControl instanceof FormGroup) {
-        this.logValidationErrors(abstractControl);
-      } else {
-        this.formErrors[key] = '';
-        if (abstractControl && !abstractControl.valid &&
-            (abstractControl.touched || abstractControl.dirty)) {
-          const messages = this.ValidationMessages[key];
-          for (const errorKey in abstractControl.errors) {
-            if (errorKey) {
-              this.formErrors[key] += messages[errorKey] + '';
-            }
+      const abstractControl = group.get(key);
+
+      this.formErrors[key] = '';
+      if (abstractControl && !abstractControl.valid &&
+          (abstractControl.touched || abstractControl.dirty)) {
+        const messages = this.ValidationMessages[key];
+        for (const errorKey in abstractControl.errors) {
+          if (errorKey) {
+            this.formErrors[key] += messages[errorKey] + '';
           }
         }
+      }
+
+      if (abstractControl instanceof FormGroup) {
+        this.logValidationErrors(abstractControl);
       }
     });
   }
@@ -112,3 +121,14 @@ export class CreateUserComponent implements OnInit {
     console.log(this.formErrors);
   }
 }
+
+function matchEmail(group: AbstractControl): {[key: string]: any} | null {
+  const emailControl = group.get('email');
+  const confirmEmailControl = group.get('confirmEmail');
+
+  if (emailControl.value === confirmEmailControl.value) {
+    return null;
+    } else {
+      return { emailMismatch: true };
+    }
+  }
