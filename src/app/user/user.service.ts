@@ -5,9 +5,9 @@ import { IUser } from './user';
 export class UserService {
   getUsers(): IUser[] {
     return [
-      {firstName: 'Adeel', lastName: 'Barki', phone: '03104975185', email: 'adeelbarki@gmail.com', confirmEmail: 'adeelbarki@gmail.com'},
-      {firstName: 'Bilal', lastName: 'Barki', phone: '03216865470', email: 'bilalbarki@gmail.com', confirmEmail: 'bilalbarki@gmail.com'},
-      {firstName: 'Haris', lastName: 'Barki', phone: '031723456785', email: 'harisbarki@gmail.com', confirmEmail: 'harisbarki@gmail.com'},
+      {firstName: 'Hector', lastName: 'Silwa', phone: '0234123456', email: 'hector@xyz.com', confirmEmail: 'adeelbarki@gmail.com'},
+      {firstName: 'John', lastName: 'Candy', phone: '03234566787', email: 'john@xyz.com', confirmEmail: 'bilalbarki@gmail.com'},
+      {firstName: 'kelly', lastName: 'Case', phone: '02323456785', email: 'kelly@xyz.com', confirmEmail: 'harisbarki@gmail.com'},
     ];
   }
 }
