@@ -66,11 +66,11 @@ export class CreateUserComponent implements OnInit {
   }
 
   AddSkillButtonClick(): void {
-    (<FormArray>this.userForm.get('skills')).push(this.addSkillFormGroup());
+    ( this.userForm.get('skills') as FormArray).push(this.addSkillFormGroup());
   }
 
   removeSkillFormClick(skillIndex: number): void {
-    (<FormArray>this.userForm.get('skills')).removeAt(skillIndex);
+    ( this.userForm.get('skills') as FormArray).removeAt(skillIndex);
   }
 
   addSkillFormGroup(): FormGroup {
