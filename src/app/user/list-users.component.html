@@ -1,1 +1,5 @@
-<p>list of users works!</p>
+<h2 *ngFor="let user of users">
+  {{user.firstName}} {{user.lastName}}
+  <p>{{user.phone}}</p>
+  <p>{{user.email}}</p>
+</h2>
