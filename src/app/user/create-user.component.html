@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="userForm">
+<form class="form-horizontal" [formGroup]="userForm" #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Create User</h3>
@@ -195,11 +195,9 @@
       </div>
     </div>
 
-
-
     <div class="panel-footer">
       <div class="btn btn-toolbar">
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" [disabled]="!postForm.valid">Save</button>
         <button class="btn btn-primary" (click)="onClickLoadData()">Load</button>
       </div>
     </div>

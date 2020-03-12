@@ -65,6 +65,10 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
+  onCreatePost(postData: { firstName: string; lastName: string, phone: string, email: string}) {
+    console.log(postData);
+  }
+
   AddSkillButtonClick(): void {
     ( this.userForm.get('skills') as FormArray).push(this.addSkillFormGroup());
   }
@@ -127,4 +131,4 @@ function matchEmail(group: AbstractControl): {[key: string]: any} | null {
     } else {
       return { emailMismatch: true };
     }
-  }
+}
