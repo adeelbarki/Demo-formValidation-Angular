@@ -11,10 +11,10 @@ import { UserService } from './user.service';
 export class ListUsersComponent implements OnInit {
   users: IUser[];
 
-  constructor(private _userService: UserService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.users = this._userService.getUsers();
+    this.users = this.userService.getUsers();
     console.log(this.users);
   }
 

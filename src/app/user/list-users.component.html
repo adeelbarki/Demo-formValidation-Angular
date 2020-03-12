@@ -1,5 +1,29 @@
-<div *ngFor="let user of users">
+<!-- <div *ngFor="let user of users">
   <h3>Name: {{user.firstName}} {{user.lastName}}</h3>
   <p>Phone: {{user.phone}}</p>
   <p>Email: {{user.email}}</p>
+</div> -->
+
+<div class="container">
+  <h2>List of Users</h2>
+  <div class="table-responsive">
+  <table class="table" *ngFor="let user of users">
+    <thead>
+      <tr>
+        <th style="width: 25%">Firstname</th>
+        <th style="width: 25%">Lastname</th>
+        <th style="width: 25%">Phone</th>
+        <th style="width: 25%">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </div>
