@@ -6,6 +6,7 @@ import { CreateUserComponent } from './user/create-user.component';
 const appRoutes: Routes = [
   { path: 'list', component: ListUsersComponent },
   { path: 'create', component: CreateUserComponent },
+  { path: 'edit/:id', component: CreateUserComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
 ]
 

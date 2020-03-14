@@ -1,27 +1,24 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">List of Users</h3>
-  </div>
-  <div class="panel-body">
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-bordered" *ngIf="users && users.length">
         <thead>
-          <tr>
-            <th style="width: 25%">Firstname</th>
-            <th style="width: 25%">Lastname</th>
-            <th style="width: 25%">Phone</th>
-            <th style="width: 25%">Email</th>
+          <tr class="bg-primary">
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Contact Preference</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody *ngFor="let user of users">
-          <tr>
+        <tbody>
+          <tr *ngFor="let user of users">
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.contactPereference}}</td>
+            <td><button class="btn btn-primary">Edit</button></td>
           </tr>
         </tbody>
       </table>
-      </div>
-  </div>
-</div>
+    </div>

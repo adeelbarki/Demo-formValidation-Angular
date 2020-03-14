@@ -1,7 +1,11 @@
+import { ISkill } from './skill';
+
 export interface IUser {
+  id: number;
   firstName: string;
   lastName: string;
-  phone: string;
   email: string;
-  confirmEmail: string;
+  phone?: number;
+  contactPreference: string;
+  skills: ISkill[];
 }

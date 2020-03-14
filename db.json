@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+    "firstName": "Mark",
+    "lastName": "Twin",
+    "contactPereference": "email",
+    "email": "mark@gmail.com",
+    "phone": "543216789",
+    "skills": [
+      {
+        "skillName": "C#",
+        "experienceInYears": 1,
+        "proficiency": "beginner"
+      },
+      {
+        "skillName": "Java",
+        "experienceInYears": 2,
+        "proficiency": "intermediate"
+      }
+    ]
+    },
+    {
+      "id": 2,
+    "firstName": "Juan",
+    "lastName": "Oslo",
+    "contactPereference": "phone",
+    "email": "juan@gmail.com",
+    "phone": "443217808664",
+    "skills": [
+      {
+        "skillName": "Python",
+        "experienceInYears": 3,
+        "proficiency": "intermediate"
+      },
+      {
+        "skillName": "Java",
+        "experienceInYears": 2,
+        "proficiency": "beginner"
+      }
+    ]
+    }
+  ]
+}

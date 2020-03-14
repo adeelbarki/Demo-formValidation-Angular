@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { CustomValidators } from '../shared/custom.validators';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
+import { IUser } from './user';
 
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  styleUrls: ['./create-user.component.css'],
+  providers: [UserService]
 })
 export class CreateUserComponent implements OnInit {
   userForm: FormGroup;
@@ -40,7 +43,7 @@ export class CreateUserComponent implements OnInit {
   formErrors = {
   };
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -64,14 +67,6 @@ export class CreateUserComponent implements OnInit {
     this.userForm.valueChanges.subscribe(data => {
       this.logValidationErrors(this.userForm);
     });
-  }
-
-  onCreatePost(postData) {
-    // console.log(postData);
-    this.http.post('https://ng-complete-guide-8744f.firebaseio.com/posts.json', postData)
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
   }
 
   AddSkillButtonClick(): void {
